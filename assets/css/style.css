@@ -1,0 +1,2625 @@
+/* =========================================================
+   SISTEM PRESENSI GURU
+   FINAL STYLE
+   DASHBOARD + USER + KELAS + JABATAN +
+   JAM KERJA + PERIZINAN + LAPORAN
+========================================================= */
+
+
+/* =========================================================
+   GOOGLE FONT
+========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+:root {
+    --primary: #4f46e5;
+    --primary-dark: #4338ca;
+    --primary-light: #eef2ff;
+
+    --sidebar: #111827;
+    --sidebar-2: #1e293b;
+    --sidebar-text: #aeb9cc;
+
+    --bg: #f5f7fb;
+    --white: #ffffff;
+
+    --text-dark: #172033;
+    --text: #334155;
+    --muted: #64748b;
+    --light-text: #94a3b8;
+
+    --border: #e6eaf0;
+    --border-dark: #d6dce7;
+
+    --success: #10b981;
+    --success-bg: #ecfdf5;
+
+    --warning: #f59e0b;
+    --warning-bg: #fffbeb;
+
+    --danger: #ef4444;
+    --danger-bg: #fef2f2;
+
+    --info: #06b6d4;
+    --info-bg: #ecfeff;
+
+    --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
+    --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.07);
+    --shadow-lg: 0 16px 40px rgba(15, 23, 42, 0.10);
+
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 18px;
+
+    --transition: 0.22s ease;
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8fafc 0%,
+            #f5f7fb 45%,
+            #f1f5f9 100%
+        );
+
+    color: var(--text-dark);
+
+    font-family:
+        'Plus Jakarta Sans',
+        -apple-system,
+        BlinkMacSystemFont,
+        'Segoe UI',
+        sans-serif;
+
+    line-height: 1.6;
+}
+
+a {
+    color: inherit;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.topbar {
+    width: 255px;
+    height: 100vh;
+
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    z-index: 1000;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 24px 14px;
+
+    background:
+        radial-gradient(
+            circle at 15% 5%,
+            rgba(99, 102, 241, 0.20),
+            transparent 28%
+        ),
+        linear-gradient(
+            180deg,
+            var(--sidebar-2),
+            var(--sidebar)
+        );
+
+    border-right:
+        1px solid rgba(255,255,255,0.05);
+
+    box-shadow:
+        5px 0 25px rgba(15,23,42,0.07);
+}
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.brand {
+    min-height: 64px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    padding: 6px 10px 20px;
+
+    margin-bottom: 18px;
+
+    color: #ffffff;
+
+    font-size: 17px;
+    font-weight: 800;
+
+    letter-spacing: -0.4px;
+
+    border-bottom:
+        1px solid rgba(255,255,255,0.08);
+}
+
+.brand::before {
+    content: "SP";
+
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6366f1,
+            #818cf8
+        );
+
+    color: #ffffff;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    box-shadow:
+        0 8px 20px rgba(79,70,229,0.35);
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.nav {
+    width: 100%;
+
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+
+    min-height: 0;
+}
+
+
+/* =========================================================
+   NAV LINK
+========================================================= */
+
+.nav a {
+    position: relative;
+
+    width: 100%;
+    min-height: 44px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 10px 13px;
+
+    border-radius: 11px;
+
+    color: var(--sidebar-text);
+
+    text-decoration: none;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    transition:
+        background var(--transition),
+        color var(--transition),
+        transform var(--transition);
+}
+
+
+
+
+/* =========================================================
+   NAV ICON
+========================================================= */
+
+.nav a::before {
+    width: 27px;
+
+    flex-shrink: 0;
+
+    margin-right: 7px;
+
+    text-align: center;
+
+    font-size: 15px;
+
+    opacity: 0.95;
+}
+
+
+/* ICON */
+
+.nav a:nth-child(1)::before {
+    content: "⌂";
+}
+
+.nav a:nth-child(2)::before {
+    content: "♙";
+}
+
+.nav a:nth-child(3)::before {
+    content: "▦";
+}
+
+.nav a:nth-child(4)::before {
+    content: "◆";
+}
+
+.nav a:nth-child(5)::before {
+    content: "◷";
+}
+
+.nav a:nth-child(6)::before {
+    content: "▣";
+}
+
+.nav a:nth-child(7)::before {
+    content: "▤";
+}
+
+.nav a:nth-child(8)::before {
+    content: "⇥";
+}
+
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+.nav a:hover {
+    color: #ffffff;
+
+    background:
+        rgba(255,255,255,0.08);
+
+    transform:
+        translateX(3px);
+}
+
+
+/* =========================================================
+   DASHBOARD ACTIVE
+========================================================= */
+
+.nav a:first-child {
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #4f46e5,
+            #6366f1
+        );
+
+    font-weight: 700;
+
+    box-shadow:
+        0 8px 18px
+        rgba(79,70,229,0.25);
+}
+
+
+/* ACTIVE MARKER */
+
+.nav a:first-child::after {
+    content: "";
+
+    position: absolute;
+
+    right: -14px;
+
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    width: 3px;
+    height: 22px;
+
+    border-radius: 5px;
+
+    background:
+        #a5b4fc;
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+.nav a:last-child {
+    margin-top: auto;
+
+    flex-shrink: 0;
+
+    color:
+        #fca5a5;
+
+    background:
+        rgba(239,68,68,0.08);
+
+    border:
+        1px solid
+        rgba(239,68,68,0.10);
+}
+
+.nav a:last-child:hover {
+    color: #ffffff;
+
+    background:
+        rgba(239,68,68,0.20);
+
+    transform:
+        translateX(3px);
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.container {
+    width: auto;
+
+    max-width: none;
+
+    min-height: 100vh;
+
+    margin-left: 255px;
+
+    padding: 38px;
+
+    background: transparent;
+}
+
+
+/* =========================================================
+   PAGE TITLE
+========================================================= */
+
+.container > h1,
+.hero h1 {
+    margin: 0 0 8px;
+
+    color: var(--text-dark);
+
+    font-size: 29px;
+
+    line-height: 1.2;
+
+    font-weight: 800;
+
+    letter-spacing: -0.8px;
+}
+
+.container > h1 {
+    margin-bottom: 24px;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    margin-bottom: 28px;
+}
+
+.hero h1 {
+    margin-bottom: 6px;
+}
+
+.hero .muted {
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   MUTED
+========================================================= */
+
+.muted {
+    color:
+        var(--muted);
+}
+
+
+/* =========================================================
+   DASHBOARD GRID
+========================================================= */
+
+.grid {
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        20px;
+
+    margin-bottom:
+        24px;
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.card {
+    position:
+        relative;
+
+    background:
+        rgba(255,255,255,0.96);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        var(--radius-lg);
+
+    padding:
+        24px;
+
+    box-shadow:
+        var(--shadow-sm);
+
+    transition:
+        var(--transition);
+}
+
+.card:hover {
+    box-shadow:
+        var(--shadow-md);
+}
+
+
+/* =========================================================
+   DASHBOARD STAT CARD
+========================================================= */
+
+.grid > .card {
+    min-height:
+        125px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    justify-content:
+        center;
+
+    overflow:
+        hidden;
+}
+
+
+/* TOP LINE */
+
+.grid > .card::before {
+    content: "";
+
+    position:
+        absolute;
+
+    left:
+        0;
+
+    top:
+        0;
+
+    width:
+        100%;
+
+    height:
+        4px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #4f46e5,
+            #818cf8
+        );
+}
+
+
+/* CARD 2 */
+
+.grid > .card:nth-child(2)::before {
+    background:
+        linear-gradient(
+            90deg,
+            #0891b2,
+            #22d3ee
+        );
+}
+
+
+/* CARD 3 */
+
+.grid > .card:nth-child(3)::before {
+    background:
+        linear-gradient(
+            90deg,
+            #f59e0b,
+            #fbbf24
+        );
+}
+
+
+/* STAT LABEL */
+
+.grid > .card .muted {
+    margin-bottom:
+        7px;
+
+    font-size:
+        11px;
+
+    font-weight:
+        700;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        0.6px;
+}
+
+
+/* STAT NUMBER */
+
+.stat {
+    font-size:
+        31px;
+
+    line-height:
+        1;
+
+    font-weight:
+        800;
+
+    color:
+        var(--text-dark);
+}
+
+
+/* =========================================================
+   CARD HEADING
+========================================================= */
+
+.container > .card h3 {
+    margin-bottom:
+        17px;
+
+    color:
+        var(--text-dark);
+
+    font-size:
+        16px;
+
+    font-weight:
+        800;
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.actions {
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        9px;
+
+    flex-wrap:
+        wrap;
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.btn {
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    min-height:
+        38px;
+
+    padding:
+        9px 15px;
+
+    border:
+        none;
+
+    border-radius:
+        10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #4f46e5,
+            #6366f1
+        );
+
+    color:
+        #ffffff;
+
+    text-decoration:
+        none;
+
+    font-size:
+        12px;
+
+    font-weight:
+        700;
+
+    cursor:
+        pointer;
+
+    box-shadow:
+        0 6px 14px
+        rgba(79,70,229,0.18);
+
+    transition:
+        var(--transition);
+}
+
+
+/* BUTTON HOVER */
+
+.btn:hover {
+    background:
+        linear-gradient(
+            135deg,
+            #4338ca,
+            #4f46e5
+        );
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 10px 20px
+        rgba(79,70,229,0.23);
+}
+
+
+/* =========================================================
+   SECONDARY BUTTON
+========================================================= */
+
+.btn.secondary,
+.btn-secondary {
+    background:
+        #e8edf5;
+
+    color:
+        var(--text);
+
+    box-shadow:
+        none;
+}
+
+.btn.secondary:hover,
+.btn-secondary:hover {
+    background:
+        #dbe2ec;
+
+    color:
+        var(--text-dark);
+
+    box-shadow:
+        none;
+}
+
+
+/* =========================================================
+   DANGER BUTTON
+========================================================= */
+
+.btn.danger,
+.btn-danger {
+    background:
+        var(--danger);
+
+    color:
+        #ffffff;
+
+    box-shadow:
+        0 5px 12px
+        rgba(239,68,68,0.16);
+}
+
+.btn.danger:hover,
+.btn-danger:hover {
+    background:
+        #dc2626;
+
+    box-shadow:
+        0 9px 18px
+        rgba(239,68,68,0.22);
+}
+
+
+/* =========================================================
+   SMALL BUTTON
+========================================================= */
+
+.btn.small {
+    min-height:
+        32px;
+
+    padding:
+        7px 11px;
+
+    font-size:
+        11px;
+
+    border-radius:
+        8px;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.card form {
+    width:
+        100%;
+}
+
+
+/* =========================================================
+   FORM GRID
+========================================================= */
+
+.form-grid {
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(
+                210px,
+                1fr
+            )
+        );
+
+    gap:
+        16px;
+
+    margin-bottom:
+        2px;
+}
+
+
+/* =========================================================
+   FORM GROUP
+========================================================= */
+
+.form-group {
+    margin-bottom:
+        17px;
+}
+
+
+/* =========================================================
+   FORM LABEL
+========================================================= */
+
+.form-group label {
+    display:
+        block;
+
+    margin-bottom:
+        7px;
+
+    color:
+        var(--text-dark);
+
+    font-size:
+        12px;
+
+    font-weight:
+        700;
+}
+
+
+/* =========================================================
+   INPUT SELECT TEXTAREA
+========================================================= */
+
+.form-group input,
+.form-group select,
+.form-group textarea,
+.form-control,
+.form-select {
+    width:
+        100%;
+
+    min-height:
+        41px;
+
+    padding:
+        10px 12px;
+
+    border:
+        1px solid
+        var(--border-dark);
+
+    border-radius:
+        10px;
+
+    background:
+        #ffffff;
+
+    color:
+        var(--text-dark);
+
+    font-size:
+        12px;
+
+    outline:
+        none;
+
+    transition:
+        var(--transition);
+}
+
+
+/* PLACEHOLDER */
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color:
+        #a1acbb;
+}
+
+
+/* HOVER */
+
+.form-group input:hover,
+.form-group select:hover,
+.form-group textarea:hover {
+    border-color:
+        #bec7d5;
+}
+
+
+/* FOCUS */
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus,
+.form-control:focus,
+.form-select:focus {
+    border-color:
+        var(--primary);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(79,70,229,0.10);
+}
+
+
+/* TEXTAREA */
+
+.form-group textarea {
+    min-height:
+        95px;
+
+    resize:
+        vertical;
+}
+
+
+/* =========================================================
+   FORM ACTIONS
+========================================================= */
+
+.form-actions {
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        9px;
+
+    padding-top:
+        6px;
+
+    flex-wrap:
+        wrap;
+}
+
+
+/* =========================================================
+   ALERT
+========================================================= */
+
+.alert {
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        9px;
+
+    padding:
+        12px 15px;
+
+    margin-bottom:
+        18px;
+
+    border-radius:
+        11px;
+
+    font-size:
+        12px;
+
+    font-weight:
+        600;
+}
+
+
+.alert-success,
+.alert.success {
+    color:
+        #047857;
+
+    background:
+        var(--success-bg);
+
+    border:
+        1px solid #bbf7d0;
+}
+
+
+.alert-warning,
+.alert.warning {
+    color:
+        #b45309;
+
+    background:
+        var(--warning-bg);
+
+    border:
+        1px solid #fde68a;
+}
+
+
+.alert-danger,
+.alert.error {
+    color:
+        #b91c1c;
+
+    background:
+        var(--danger-bg);
+
+    border:
+        1px solid #fecaca;
+}
+
+
+.alert-info {
+    color:
+        #0e7490;
+
+    background:
+        var(--info-bg);
+
+    border:
+        1px solid #a5f3fc;
+}
+
+
+/* =========================================================
+   TABLE WRAPPER
+========================================================= */
+
+.table-wrap,
+.table-responsive {
+    width:
+        100%;
+
+    overflow-x:
+        auto;
+
+    border-radius:
+        12px;
+
+    scrollbar-width:
+        thin;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.table {
+    width:
+        100%;
+
+    min-width:
+        650px;
+
+    border-collapse:
+        separate;
+
+    border-spacing:
+        0;
+
+    background:
+        #ffffff;
+
+    font-size:
+        12px;
+}
+
+
+/* =========================================================
+   TABLE HEADER
+========================================================= */
+
+.table th {
+    padding:
+        14px 16px;
+
+    background:
+        #f7f8fc;
+
+    color:
+        #64748b;
+
+    text-align:
+        left;
+
+    border-bottom:
+        1px solid
+        var(--border);
+
+    font-size:
+        10px;
+
+    font-weight:
+        800;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        0.55px;
+
+    white-space:
+        nowrap;
+}
+
+
+/* =========================================================
+   TABLE BODY
+========================================================= */
+
+.table td {
+    padding:
+        14px 16px;
+
+    color:
+        var(--text);
+
+    background:
+        #ffffff;
+
+    border-bottom:
+        1px solid #edf0f5;
+
+    vertical-align:
+        middle;
+}
+
+
+/* =========================================================
+   TABLE HOVER
+========================================================= */
+
+.table tbody tr {
+    transition:
+        var(--transition);
+}
+
+.table tbody tr:hover td {
+    background:
+        #fafbff;
+}
+
+.table tbody tr:last-child td {
+    border-bottom:
+        none;
+}
+
+
+/* =========================================================
+   TABLE ACTIONS
+========================================================= */
+
+.table .actions {
+    min-width:
+        130px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        6px;
+
+    flex-wrap:
+        wrap;
+}
+
+
+/* =========================================================
+   BADGE
+========================================================= */
+
+.badge {
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    min-width:
+        72px;
+
+    padding:
+        5px 10px;
+
+    border-radius:
+        20px;
+
+    font-size:
+        10px;
+
+    font-weight:
+        800;
+
+    text-transform:
+        capitalize;
+}
+
+
+.badge.green,
+.badge-success {
+    color:
+        #047857;
+
+    background:
+        var(--success-bg);
+}
+
+
+.badge.orange,
+.badge-warning {
+    color:
+        #b45309;
+
+    background:
+        var(--warning-bg);
+}
+
+
+.badge.red,
+.badge-danger {
+    color:
+        #b91c1c;
+
+    background:
+        var(--danger-bg);
+}
+
+
+.badge.blue,
+.badge-info {
+    color:
+        #0e7490;
+
+    background:
+        var(--info-bg);
+}
+
+
+/* =========================================================
+   TABLE LINKS
+========================================================= */
+
+.table td a:not(.btn) {
+    color:
+        var(--primary);
+
+    font-weight:
+        700;
+
+    text-decoration:
+        none;
+}
+
+.table td a:not(.btn):hover {
+    color:
+        var(--primary-dark);
+
+    text-decoration:
+        underline;
+}
+
+
+/* =========================================================
+   PERIZINAN
+========================================================= */
+
+.table td select {
+    min-width:
+        105px;
+
+    min-height:
+        35px;
+
+    padding:
+        7px 9px;
+
+    border:
+        1px solid
+        var(--border-dark);
+
+    border-radius:
+        8px;
+
+    background:
+        #ffffff;
+
+    color:
+        var(--text-dark);
+
+    font-size:
+        11px;
+
+    outline:
+        none;
+}
+
+
+.table td select:focus {
+    border-color:
+        var(--primary);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(79,70,229,0.08);
+}
+
+
+.table td input[type="text"] {
+    width:
+        145px !important;
+
+    min-height:
+        35px !important;
+
+    margin:
+        7px 0 !important;
+
+    padding:
+        7px 9px !important;
+
+    border:
+        1px solid
+        var(--border-dark) !important;
+
+    border-radius:
+        8px !important;
+
+    font-size:
+        10px !important;
+
+    outline:
+        none;
+}
+
+
+.table td input[type="text"]:focus {
+    border-color:
+        var(--primary) !important;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(79,70,229,0.08);
+}
+
+
+/* =========================================================
+   JAM KERJA
+========================================================= */
+
+input[type="time"],
+input[type="date"],
+input[type="number"] {
+    color-scheme:
+        light;
+}
+/* =========================================================
+   LOGIN - MODERN
+========================================================= */
+
+.login-page {
+    min-height: 100vh;
+
+    display: grid;
+    place-items: center;
+
+    padding: 25px;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(99, 102, 241, 0.18),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(6, 182, 212, 0.14),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #eef2ff 0%,
+            #f8fafc 50%,
+            #ecfeff 100%
+        );
+}
+
+
+/* =========================================================
+   LOGIN BOX
+========================================================= */
+
+.login-box {
+    position: relative;
+
+    width: min(430px, 100%);
+
+    padding: 38px 35px 30px;
+
+    background: rgba(255, 255, 255, 0.96);
+
+    border: 1px solid rgba(255, 255, 255, 0.8);
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 25px 60px rgba(15, 23, 42, 0.14),
+        0 8px 25px rgba(79, 70, 229, 0.08);
+
+    backdrop-filter: blur(12px);
+
+    animation: loginAppear 0.5s ease;
+}
+
+
+/* =========================================================
+   GARIS WARNA DI ATAS LOGIN
+========================================================= */
+
+.login-box::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 5px;
+
+    border-radius: 24px 24px 0 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            #4f46e5,
+            #6366f1,
+            #06b6d4
+        );
+}
+
+
+/* =========================================================
+   ICON LOGIN
+========================================================= */
+
+.login-icon {
+    width: 75px;
+    height: 75px;
+
+    margin: 5px auto 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #eef2ff;
+
+    border-radius: 20px;
+
+    font-size: 38px;
+
+    box-shadow:
+        0 8px 20px rgba(79, 70, 229, 0.12);
+}
+
+
+/* =========================================================
+   BAGIAN TENGAH
+========================================================= */
+
+.login-box .center {
+    text-align: center;
+}
+
+
+/* =========================================================
+   JUDUL
+========================================================= */
+
+.login-box h1 {
+    margin-bottom: 8px;
+
+    color: #172033;
+
+    font-size: 29px;
+
+    font-weight: 800;
+
+    letter-spacing: -0.8px;
+}
+
+
+/* =========================================================
+   SUBJUDUL
+========================================================= */
+
+.login-box .muted {
+    color: #64748b;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.login-box form {
+    margin-top: 25px;
+}
+
+
+/* =========================================================
+   FORM GROUP
+========================================================= */
+
+.login-box .form-group {
+    margin-bottom: 18px;
+}
+
+
+/* =========================================================
+   LABEL
+========================================================= */
+
+.login-box .form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #334155;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+.login-box .form-group input {
+    width: 100%;
+
+    min-height: 48px;
+
+    padding: 12px 15px;
+
+    border: 1.5px solid #dbe2ea;
+
+    border-radius: 12px;
+
+    background: #f8fafc;
+
+    color: #172033;
+
+    font-size: 13px;
+
+    outline: none;
+
+    transition:
+        border-color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+/* INPUT HOVER */
+
+.login-box .form-group input:hover {
+    border-color: #a5b4fc;
+
+    background: #ffffff;
+}
+
+
+/* INPUT FOCUS */
+
+.login-box .form-group input:focus {
+    border-color: #6366f1;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 4px rgba(99, 102, 241, 0.12);
+
+    transform: translateY(-1px);
+}
+
+
+/* PLACEHOLDER */
+
+.login-box .form-group input::placeholder {
+    color: #94a3b8;
+}
+
+
+/* =========================================================
+   TOMBOL LOGIN
+========================================================= */
+
+.login-box .login-btn {
+    width: 100%;
+
+    min-height: 48px;
+
+    margin-top: 5px;
+
+    padding: 12px 15px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #4f46e5,
+            #6366f1
+        );
+
+    color: #ffffff;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 20px rgba(79, 70, 229, 0.22);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+}
+
+
+/* TOMBOL HOVER */
+
+.login-box .login-btn:hover {
+    transform: translateY(-2px);
+
+    background:
+        linear-gradient(
+            135deg,
+            #4338ca,
+            #4f46e5
+        );
+
+    box-shadow:
+        0 14px 25px rgba(79, 70, 229, 0.30);
+}
+
+
+/* TOMBOL DITEKAN */
+
+.login-box .login-btn:active {
+    transform: translateY(0);
+
+    box-shadow:
+        0 7px 14px rgba(79, 70, 229, 0.20);
+}
+
+
+/* =========================================================
+   PESAN ERROR
+========================================================= */
+
+.login-box .alert {
+    margin-top: 20px;
+
+    border-radius: 12px;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   FOOTER LOGIN
+========================================================= */
+
+.login-box .login-footer {
+    margin-top: 20px;
+
+    padding: 0;
+
+    text-align: center;
+
+    color: #94a3b8;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   ANIMASI
+========================================================= */
+
+@keyframes loginAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(15px)
+            scale(0.98);
+    }
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+/* =========================================================
+   RESPONSIVE HP
+========================================================= */
+
+@media (max-width: 500px) {
+
+    .login-page {
+        padding: 18px;
+    }
+
+    .login-box {
+        width: 100%;
+
+        padding: 32px 23px 25px;
+
+        border-radius: 20px;
+    }
+
+    .login-icon {
+        width: 65px;
+        height: 65px;
+
+        font-size: 32px;
+
+        border-radius: 18px;
+    }
+
+    .login-box h1 {
+        font-size: 25px;
+    }
+
+    .login-box .form-group input {
+        min-height: 46px;
+    }
+
+    .login-box .login-btn {
+        min-height: 46px;
+    }
+}
+/* =========================================================
+   RESPONSIVE HP
+========================================================= */
+
+@media (max-width: 500px) {
+
+    .login-page {
+        padding: 18px;
+    }
+
+    .login-box {
+        padding: 32px 23px 25px;
+
+        border-radius: 20px;
+    }
+
+    .login-box h1 {
+        font-size: 25px;
+    }
+
+    .login-box .form-group input {
+        min-height: 46px;
+    }
+
+    .login-box .btn {
+        min-height: 46px;
+    }
+}
+/* =========================================================
+   UTILITIES
+========================================================= */
+
+.footer {
+    padding:
+        20px;
+
+    text-align:
+        center;
+
+    color:
+        var(--muted);
+
+    font-size:
+        11px;
+}
+
+
+.danger-text {
+    color:
+        #b91c1c;
+}
+
+
+.success-text {
+    color:
+        #15803d;
+}
+
+
+.flex-between {
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+}
+
+
+.gap-2 {
+    gap:
+        8px;
+}
+
+
+.mb-0 {
+    margin-bottom:
+        0 !important;
+}
+
+
+.mt-3 {
+    margin-top:
+        16px !important;
+}
+
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+.hero + .grid {
+    animation:
+        fadeUp
+        0.35s
+        ease;
+}
+
+.container > .card {
+    animation:
+        fadeUp
+        0.35s
+        ease;
+}
+
+
+@keyframes fadeUp {
+
+    from {
+        opacity:
+            0;
+
+        transform:
+            translateY(8px);
+    }
+
+    to {
+        opacity:
+            1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .topbar {
+        width:
+            225px;
+    }
+
+    .container {
+        margin-left:
+            225px;
+
+        padding:
+            30px;
+    }
+
+    .grid {
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(
+                    0,
+                    1fr
+                )
+            );
+    }
+
+    .brand {
+        font-size:
+            15px;
+    }
+
+    .nav a {
+        font-size:
+            11px;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .topbar {
+        width:
+            70px;
+
+        padding:
+            18px 9px;
+    }
+
+    .brand {
+        justify-content:
+            center;
+
+        padding:
+            4px 0 18px;
+
+        font-size:
+            0;
+    }
+
+    .brand::before {
+        width:
+            40px;
+
+        height:
+            40px;
+    }
+
+    .nav a {
+        justify-content:
+            center;
+
+        padding:
+            11px 4px;
+
+        font-size:
+            0;
+    }
+
+    .nav a::before {
+        width:
+            auto;
+
+        margin:
+            0;
+
+        font-size:
+            17px;
+    }
+
+    .nav a:first-child::after {
+        right:
+            -9px;
+    }
+
+    .container {
+        margin-left:
+            70px;
+
+        padding:
+            22px 18px;
+    }
+
+    .container > h1,
+    .hero h1 {
+        font-size:
+            24px;
+    }
+
+    .grid {
+        grid-template-columns:
+            1fr;
+
+        gap:
+            14px;
+    }
+
+    .grid > .card {
+        min-height:
+            105px;
+    }
+
+    .card {
+        padding:
+            20px;
+    }
+
+    .form-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .actions,
+    .form-actions {
+        flex-direction:
+            column;
+
+        align-items:
+            stretch;
+    }
+
+    .actions .btn,
+    .form-actions .btn {
+        width:
+            100%;
+    }
+
+    .table {
+        min-width:
+            700px;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE HP KECIL
+========================================================= */
+
+@media (max-width: 430px) {
+
+    .topbar {
+        width:
+            60px;
+    }
+
+    .container {
+        margin-left:
+            60px;
+
+        padding:
+            17px 13px;
+    }
+
+    .brand::before {
+        width:
+            35px;
+
+        height:
+            35px;
+
+        font-size:
+            10px;
+    }
+
+    .nav a::before {
+        font-size:
+            15px;
+    }
+
+    .container > h1,
+    .hero h1 {
+        font-size:
+            21px;
+    }
+
+    .stat {
+        font-size:
+            28px;
+    }
+
+    .card {
+        padding:
+            17px;
+    }
+
+    .form-group {
+        margin-bottom:
+            14px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        font-size:
+            12px;
+    }
+}
+
+
+/* =========================================================
+   PRINT LAPORAN
+========================================================= */
+
+@media print {
+
+    .topbar {
+        display:
+            none !important;
+    }
+
+    .container {
+        margin:
+            0 !important;
+
+        padding:
+            0 !important;
+    }
+
+    .card {
+        box-shadow:
+            none !important;
+
+        border:
+            1px solid #ddd !important;
+    }
+
+    .btn,
+    .actions {
+        display:
+            none !important;
+    }
+
+    body {
+        background:
+            #ffffff;
+    }
+
+    .table {
+        min-width:
+            100%;
+    }
+}
+
+
+/* =========================================================
+   FOCUS
+========================================================= */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+
+    outline:
+        3px solid
+        rgba(79,70,229,0.20);
+
+    outline-offset:
+        2px;
+}
+
+
+/* =========================================================
+   TEXT SELECTION
+========================================================= */
+
+::selection {
+    background:
+        #c7d2fe;
+
+    color:
+        #312e81;
+}
+/* =========================================================
+   EMOJI HTML - PREVENT DOUBLE ICONS
+========================================================= */
+
+/* Emoji sudah ditulis langsung di HTML, jadi ikon pseudo lama dimatikan. */
+.brand::before {
+    content: none;
+    display: none;
+}
+
+.nav a::before {
+    content: none !important;
+    display: none;
+}
+
+
+/* =========================================================
+   USER DASHBOARD
+========================================================= */
+
+.today-card {
+    margin-top: 25px;
+}
+
+.attendance-status {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 18px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    margin-top: 18px;
+}
+
+.status-icon {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: 14px;
+    font-size: 25px;
+}
+
+.attendance-status > div:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.attendance-status strong {
+    color: #1e3a8a;
+    font-size: 18px;
+}
+
+.attendance-detail {
+    margin-top: 15px;
+}
+
+.attendance-detail > div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px;
+    background: #eff6ff;
+    border-radius: 12px;
+    color: #1e40af;
+}
+
+.attendance-detail span {
+    color: #64748b;
+    font-size: 13px;
+}
+
+.attendance-detail strong {
+    margin-left: auto;
+    color: #1e3a8a;
+}
+
+.empty-attendance {
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.empty-icon {
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+.empty-attendance h3 {
+    color: #1e3a8a;
+    margin-bottom: 7px;
+}
+
+.empty-attendance .btn {
+    margin-top: 18px;
+}
+
+.menu-description {
+    margin-bottom: 20px;
+}
+
+.dashboard-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.dashboard-actions .btn {
+    margin: 0;
+}
+
+
+/* =========================================================
+   PRESENSI HARIAN
+========================================================= */
+
+.presensi-container {
+    max-width: 750px;
+}
+
+.presensi-card {
+    text-align: center;
+    padding: 35px;
+}
+
+.presensi-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    background: #eff6ff;
+    border-radius: 24px;
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.12);
+}
+
+.presensi-card h1 {
+    color: #1e3a8a;
+    margin-bottom: 8px;
+}
+
+.presensi-card .alert {
+    margin: 22px 0;
+    text-align: left;
+}
+
+.presensi-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin: 28px 0;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    text-align: left;
+    padding: 17px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    transition: 0.3s;
+}
+
+.info-item:hover {
+    background: #eff6ff;
+    border-color: #bfdbfe;
+    transform: translateY(-2px);
+}
+
+.info-icon {
+    width: 43px;
+    height: 43px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: 12px;
+    font-size: 21px;
+    flex-shrink: 0;
+}
+
+.info-item div {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.info-item strong {
+    color: #1e3a8a;
+    font-size: 16px;
+}
+
+.presensi-btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 12px;
+    margin-top: 5px;
+}
+
+.presensi-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+}
+
+.presensi-note {
+    margin-top: 18px;
+    font-size: 12px;
+    color: #64748b;
+}
+
+
+/* =========================================================
+   PENGAJUAN IZIN / SAKIT
+========================================================= */
+
+.form-hint {
+    display: block;
+    margin-top: 6px;
+    font-size: 12px;
+    color: #64748b;
+}
+
+.form-group select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 10px;
+    background: #f8fafc;
+    color: #334155;
+    font-size: 15px;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.form-group select:focus {
+    border-color: #3b82f6;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12);
+}
+
+.form-group textarea {
+    width: 100%;
+    min-height: 120px;
+    resize: vertical;
+    padding: 13px 14px;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 11px;
+    background: #f8fafc;
+    font-family: inherit;
+    font-size: 15px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.form-group textarea:focus {
+    border-color: #3b82f6;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12);
+}
+
+.form-group textarea::placeholder {
+    color: #94a3b8;
+}
+
+.form-group input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1.5px dashed #cbd5e1;
+    border-radius: 10px;
+    background: #f8fafc;
+    cursor: pointer;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+.card + .card {
+    margin-top: 25px;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.badge.green {
+    background: #f0fdf4;
+    color: #15803d;
+    border: 1px solid #bbf7d0;
+}
+
+.badge.red {
+    background: #fef2f2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+}
+
+.badge.orange {
+    background: #fff7ed;
+    color: #c2410c;
+    border: 1px solid #fed7aa;
+}
+
+.empty-table {
+    text-align: center;
+    padding: 30px !important;
+    color: #64748b;
+}
+
+
+/* =========================================================
+   RESPONSIVE - FITUR TAMBAHAN
+========================================================= */
+
+@media (max-width: 650px) {
+    .presensi-card {
+        padding: 25px 18px;
+    }
+
+    .presensi-info {
+        grid-template-columns: 1fr;
+    }
+
+    .presensi-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 34px;
+    }
+
+    .dashboard-actions {
+        flex-direction: column;
+    }
+
+    .dashboard-actions .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .attendance-detail > div {
+        flex-wrap: wrap;
+    }
+}
